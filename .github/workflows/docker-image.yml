@@ -19,13 +19,13 @@ jobs:
     - name: Build the Docker image
       run: |
         echo "${REGISTRY_URL}"
-        docker build --tag "${{ secrets.REGISTRY_URL }}/dummy/${DOCKER_IMAGE_NAME}:latest" .
+        docker build --tag "${{ secrets.DOCKER_IMAGE_STAGING }}" .
 
     - name: Login to Registry
       run: echo "${{ secrets.REGISTRY_PASS }}" | docker login -u "${{ secrets.REGISTRY_USER }}" --password-stdin "${{ secrets.REGISTRY_URL }}"
 
     - name: Push to Registry
-      run: docker push ${{ secrets.REGISTRY_URL }}/dummy/${DOCKER_IMAGE_NAME}:latest
+      run: docker push ${{ secrets.DOCKER_IMAGE_STAGING }}
 
     - name: Redeploy
       run: curl -fku "${{ secrets.RANCHER_TOKEN }}" -X POST -H "Accept:application/json" -H "Content-Type:application/json" "${{ secrets.RANCHER_URL }}"

@@ -6,10 +6,6 @@ on:
   pull_request:
      branches: [ "master" ]
   workflow_dispatch:
-    inputs:
-      name:
-        description: "Input is not required, this is just a placeholder"
-        default: "Build manually triggered"
   
 env:
   DOCKER_IMAGE_NAME: dumbflix-test

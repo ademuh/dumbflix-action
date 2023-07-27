@@ -30,11 +30,13 @@ jobs:
 
     - name: Redeploy
       run: curl -fku "${{ secrets.RANCHER_TOKEN }}" -X POST -H "Accept:application/json" -H "Content-Type:application/json" "${{ secrets.RANCHER_URL }}"
-
-    - name: notification
-      if: cancelled() == false
-      uses: xinthink/action-telegram@v1.1
+    
+    - name: send telegram message on push
+      uses: appleboy/telegram-action@master
       with:
-        botToken: ${{ secrets.TELEGRAM_TOKEN }}
-        chatId: ${{ secrets.TELEGRAM_ID }}
-        jobStatus: ${{ job.status }}
+        to: ${{ secrets.TELEGRAM_ID }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        message: |
+          ${{ github.actor }} created commit:
+          Commit message: ${{ github.event.commits[0].message }}
+         

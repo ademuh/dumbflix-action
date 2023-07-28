@@ -44,14 +44,16 @@ jobs:
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
           ✅ Build succeeded!
-          ${{ github.actor }} created commit:
-          Commit message: ${{ github.event.head_commit.message }}
+          🧑 ${{ github.actor }} created commit:
+          ✉ Commit message: ${{ github.event.head_commit.message }}
           
-          Commit: ${{ github.sha }}
+          Details :
+          SHA: ${{ github.sha }}
+          Workflow: ${{ github.workflow }}
+          Repo: ${{ github.repository }}
           Branch: ${{ github.ref }}
           Author: ${{ github.actor }}
-          Repo: ${{ github.repository }}
-          Workflow: ${{ github.workflow }}
+                 
 
   fail:
     environment: "Github Action CI"
@@ -65,12 +67,13 @@ jobs:
          to: ${{ secrets.TELEGRAM_ID }}
          token: ${{ secrets.TELEGRAM_TOKEN }}
          message: |
-           ❌ Build failed!
-           ${{ github.actor }} created commit:
-           Commit message: ${{ github.event.head_commit.message }}
-           
-           Commit: ${{ github.sha }}
+           ❌ Build succeeded!
+           🧑 ${{ github.actor }} created commit:
+           ✉ Commit message: ${{ github.event.head_commit.message }}
+          
+           Details :
+           SHA: ${{ github.sha }}
+           Workflow: ${{ github.workflow }}
+           Repo: ${{ github.repository }}
            Branch: ${{ github.ref }}
            Author: ${{ github.actor }}
-           Repo: ${{ github.repository }}
-           Workflow: ${{ github.workflow }}

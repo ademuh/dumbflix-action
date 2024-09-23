@@ -67,7 +67,7 @@ jobs:
          to: ${{ secrets.TELEGRAM_ID }}
          token: ${{ secrets.TELEGRAM_TOKEN }}
          message: |
-           ❌ Build succeeded!
+           ❌ Build not succeeded, lmao.
            🧑 ${{ github.actor }} created commit:
            ✉ Commit message: ${{ github.event.head_commit.message }}
           

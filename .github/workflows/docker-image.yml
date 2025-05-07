@@ -35,7 +35,7 @@ jobs:
         username: mentor
         key: ${{ secrets.KEY_SSH_LOLRANDOM }}
         port: 22
-        script: docker-compose up -d
+        script: docker compose up -d
   
 
   success:

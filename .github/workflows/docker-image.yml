@@ -29,13 +29,13 @@ jobs:
       run: docker push ${{ secrets.DOCKER_IMAGE_STAGING }}
 
     - name: Execute remote SSH commands using password
-        uses: appleboy/ssh-action@v1
-        with:
-          host: 103.150.197.209
-          username: mentor
-          password: ${{ secrets.PASSWORD_SSH }}
-          port: 22
-          script: docker-compose up -d
+      uses: appleboy/ssh-action@v1
+      with:
+        host: 103.150.197.209
+        username: mentor
+        password: ${{ secrets.PASSWORD_SSH }}
+        port: 22
+        script: docker-compose up -d
   
 
   success:

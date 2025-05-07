@@ -28,8 +28,15 @@ jobs:
     - name: Push to Registry
       run: docker push ${{ secrets.DOCKER_IMAGE_STAGING }}
 
-    - name: Redeploy
-      run: curl -fku "${{ secrets.RANCHER_TOKEN }}" -X POST -H "Accept:application/json" -H "Content-Type:application/json" "${{ secrets.RANCHER_URL }}"
+    - name: Execute remote SSH commands using password
+        uses: appleboy/ssh-action@v1
+        with:
+          host: 103.150.197.209
+          username: mentor
+          password: ${{ secrets.PASSWORD_SSH }}
+          port: 22
+          script: docker-compose up -d
+  
 
   success:
     environment: "Github Action CI"

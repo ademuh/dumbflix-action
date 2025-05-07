@@ -33,7 +33,7 @@ jobs:
       with:
         host: 103.150.197.209
         username: mentor
-        password: ${{ secrets.PASSWORD_SSH }}
+        key: ${{ secrets.KEY_SSH_LOLRANDOM }}
         port: 22
         script: docker-compose up -d
   
